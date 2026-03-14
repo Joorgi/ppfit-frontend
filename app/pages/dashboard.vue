@@ -17,10 +17,19 @@
     </div>
 
     <UCard>
-      <div class="text-center py-10">
-        <Icon name="mdi:dumbbell" class="text-6xl text-gray-300 dark:text-gray-700 mb-4"/>
-        <h3 class="text-lg font-medium">Aún no hay entrenamientos</h3>
-        <p class="text-gray-500 mt-2">Tus rutinas aparecerán aquí cuando las conectemos con Django.</p>
+      <div v-if="pending" class="text-center py-10">
+        <UIcon name="i-heroicons-arrow-path" class="animate-spin text-4xl text-primary-500 mb-4"/>
+        <p>Cargando tus entrenamientos...</p>
+      </div>
+
+      <div v-else-if="error" class="text-center py-10 text-red-500">
+        <UIcon name="i-heroicons-exclamation-triangle" class="text-4xl mb-4"/>
+        <p>Error al conectar con el servidor.</p>
+      </div>
+
+      <div v-else-if="entrenamientos" class="p-4">
+        <h3 class="font-bold mb-4">Datos recibidos de Django:</h3>
+        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded text-xs overflow-auto">{{ entrenamientos }}</pre>
       </div>
     </UCard>
   </div>
@@ -35,6 +44,8 @@ definePageMeta({
 })
 
 const authStore = useAuthStore()
+
+const {data: entrenamientos, pending, error} = await useApiFetch('/workouts/')
 
 
 const handleLogout = async () => {
