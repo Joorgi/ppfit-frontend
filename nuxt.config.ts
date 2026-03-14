@@ -2,7 +2,10 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: {enabled: true},
-  modules: ['@pinia/nuxt'],
+  modules: [
+    '@pinia/nuxt',
+    '@nuxt/eslint'
+  ],
   pinia: {
     /**
      * Automatically add stores dirs to the auto imports. This is the same as
@@ -13,5 +16,10 @@ export default defineNuxtConfig({
      * @default `['stores']`
      */
     storesDirs: ['app/stores/**']
+  },
+  eslint: {
+    config: {
+      stylistic: true
+    }
   }
 })
