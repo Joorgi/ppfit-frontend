@@ -27,9 +27,21 @@
         <p>Error al conectar con el servidor.</p>
       </div>
 
-      <div v-else-if="entrenamientos" class="p-4">
-        <h3 class="font-bold mb-4">Datos recibidos de Django:</h3>
-        <pre class="bg-gray-100 dark:bg-gray-800 p-4 rounded text-xs overflow-auto">{{ entrenamientos }}</pre>
+      <div v-if="results" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <UCard v-for="rutina in results.results" :key="rutina.id">
+
+          <template #header>
+            <h3 class="text-lg font-bold text-primary-500">{{ rutina.name }}</h3>
+            <p class="text-sm text-gray-500">{{ rutina.date }}</p>
+          </template>
+
+          <ul>
+            <li v-for="ej in rutina.workout_exercises" :key="ej.id">
+              {{ ej.exercise.name }} - {{ ej.series }}x{{ ej.repetitions }} ({{ ej.weight_kg }}kg)
+            </li>
+          </ul>
+
+        </UCard>
       </div>
     </UCard>
   </div>
@@ -37,6 +49,7 @@
 
 <script setup lang="ts">
 import {useAuthStore} from '~/stores/auth'
+import type {Pagination, Workout} from "~~/types";
 
 
 definePageMeta({
@@ -45,7 +58,7 @@ definePageMeta({
 
 const authStore = useAuthStore()
 
-const {data: entrenamientos, pending, error} = await useApiFetch('/workouts/')
+const {data: results, pending, error} = await useApiFetch<Pagination<Workout>>('/workouts/')
 
 
 const handleLogout = async () => {
