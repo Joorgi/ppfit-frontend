@@ -7,11 +7,13 @@ const items = computed<NavigationMenuItem[]>(() => [
   {
     label: 'Docs',
     to: '/docs/getting-started',
+    icon: 'i-heroicons-book-open',
     active: route.path.startsWith('/docs/getting-started')
   },
   {
     label: 'Components',
     to: '/docs/components',
+    icon: 'i-heroicons-cube',
     active: route.path.startsWith('/docs/components')
   },
   {
@@ -56,6 +58,10 @@ const items = computed<NavigationMenuItem[]>(() => [
             aria-label="GitHub"
         />
       </UTooltip>
+    </template>
+
+    <template #body>
+      <UNavigationMenu :items="items" orientation="vertical" class="-mx-2.5"/>
     </template>
   </UHeader>
 </template>
