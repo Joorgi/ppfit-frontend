@@ -1,2 +1,16 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
+:root {
+    --color-ppfit-50: #fbe9e7;
+    --color-ppfit-100: #ffccbc;
+    --color-ppfit-200: #ffab91;
+    --color-ppfit-300: #ff8a65;
+    --color-ppfit-400: #ff7043;
+    --color-ppfit-500: #ff5722;
+    --color-ppfit-600: #f4511e;
+    --color-ppfit-700: #e64a19;
+    --color-ppfit-800: #d84315;
+    --color-ppfit-900: #bf360c;
+    --color-ppfit-950: #7a2208;
+}
