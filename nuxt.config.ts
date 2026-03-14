@@ -29,10 +29,11 @@ export default defineNuxtConfig({
   },
   i18n: {
     locales: [
+      {code: 'es', language: 'es-ES'},
+      {code: 'pt', language: 'pt-BR'},
       {code: 'en', language: 'en-US'},
-      {code: 'fr', language: 'fr-FR'}
     ],
-    defaultLocale: 'en',
+    defaultLocale: 'es',
   },
   runtimeConfig: {
     public: {
