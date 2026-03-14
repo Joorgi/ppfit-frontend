@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+  <div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-dark">
     <UCard class="w-96 text-center">
       <Icon name="mdi:rocket-launch" class="text-6xl text-primary-500 mb-4"/>
       <h1 class="text-2xl font-bold mb-2">¡Instalación Limpia!</h1>
