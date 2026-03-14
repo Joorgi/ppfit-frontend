@@ -77,7 +77,7 @@ const handleLogin = async () => {
     alert('¡Login correcto! Revisa tus cookies en el navegador.')
 
     // Más adelante descomentaremos esto para ir a la app:
-    // await navigateTo('/dashboard')
+    await navigateTo('/dashboard')
   } catch (error: any) {
     // Si falla (401 Unauthorized, etc), mostramos el error
     errorMessage.value = 'Usuario o contraseña incorrectos.'
