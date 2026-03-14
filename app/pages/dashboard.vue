@@ -7,7 +7,7 @@
       </div>
 
       <UButton
-          color="red"
+          color="error"
           variant="soft"
           icon="i-heroicons-arrow-right-on-rectangle"
           @click="handleLogout"

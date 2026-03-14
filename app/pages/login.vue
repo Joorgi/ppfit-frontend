@@ -5,12 +5,12 @@
       <template #header>
         <div class="text-center">
           <Icon name="mdi:weight-lifter" class="text-4xl text-primary-500 mb-2"/>
-          <h2 class="text-2xl font-bold">Entrar a ppfit</h2>
+          <h2 class="text-2xl font-bold">{{ $t('auth.login_title') }}</h2>
         </div>
       </template>
 
       <form @submit.prevent="handleLogin" class="space-y-4">
-        <UFormField label="Usuario" name="username">
+        <UFormField :label="$t('auth.email')" name="email">
           <UInput
               v-model="credentials.email"
               icon="i-heroicons-at-symbol"
@@ -18,7 +18,7 @@
           />
         </UFormField>
 
-        <UFormField label="Contraseña" name="password">
+        <UFormField :label="$t('auth.password')" name="password">
           <UInput
               v-model="credentials.password"
               type="password"
@@ -29,7 +29,7 @@
 
         <UAlert
             v-if="errorMessage"
-            color="red"
+            color="error"
             variant="subtle"
             :title="errorMessage"
         />
