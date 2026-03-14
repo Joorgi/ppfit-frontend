@@ -3,8 +3,12 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: {enabled: true},
   modules: [
+    '@nuxt/ui',
     '@pinia/nuxt',
-    '@nuxt/eslint'
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxtjs/i18n'
   ],
   pinia: {
     /**
@@ -21,5 +25,12 @@ export default defineNuxtConfig({
     config: {
       stylistic: true
     }
+  },
+  i18n: {
+    locales: [
+      {code: 'en', language: 'en-US'},
+      {code: 'fr', language: 'fr-FR'}
+    ],
+    defaultLocale: 'en',
   }
 })
