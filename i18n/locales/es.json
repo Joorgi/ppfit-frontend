@@ -1,7 +1,7 @@
 {
     "auth": {
         "login_title": "Entrar a ppfit",
-        "username": "Usuario",
+        "email": "Email",
         "password": "Contraseña",
         "login_button": "Iniciar Sesión"
     },
