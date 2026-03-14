@@ -1,0 +1,14 @@
+{
+    "auth": {
+        "login_title": "Entrar a ppfit",
+        "username": "Usuario",
+        "password": "Contraseña",
+        "login_button": "Iniciar Sesión"
+    },
+    "dashboard": {
+        "title": "Panel de Atleta",
+        "welcome": "Bienvenido a tu zona de entrenamiento.",
+        "logout": "Cerrar Sesión",
+        "empty_state": "Aún no hay entrenamientos"
+    }
+}

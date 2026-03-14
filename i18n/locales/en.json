@@ -1,0 +1,14 @@
+{
+    "auth": {
+        "login_title": "Login to ppfit",
+        "username": "Username",
+        "password": "Password",
+        "login_button": "Sign In"
+    },
+    "dashboard": {
+        "title": "Athlete Dashboard",
+        "welcome": "Welcome to your training zone.",
+        "logout": "Log Out",
+        "empty_state": "No workouts yet"
+    }
+}

@@ -2,8 +2,8 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <div class="flex justify-between items-center mb-8">
       <div>
-        <h1 class="text-3xl font-bold tracking-tight">Panel de Atleta</h1>
-        <p class="text-gray-500 mt-1">Bienvenido a tu zona de entrenamiento.</p>
+        <h1 class="text-3xl font-bold tracking-tight">{{ $t('dashboard.title') }}</h1>
+        <p class="text-gray-500 mt-1">{{ $t('dashboard.welcome') }}</p>
       </div>
 
       <UButton
@@ -12,7 +12,7 @@
           icon="i-heroicons-arrow-right-on-rectangle"
           @click="handleLogout"
       >
-        Cerrar Sesión
+        {{ $t('dashboard.logout') }}
       </UButton>
     </div>
 

@@ -28,12 +28,23 @@ export default defineNuxtConfig({
     }
   },
   i18n: {
-    locales: [
-      {code: 'es', language: 'es-ES'},
-      {code: 'pt', language: 'pt-BR'},
-      {code: 'en', language: 'en-US'},
-    ],
+    detectBrowserLanguage: false,
+    strategy: 'prefix_except_default',
     defaultLocale: 'es',
+    locales: [
+      {
+        code: 'es',
+        iso: 'es-ES',
+        name: 'Español',
+        file: 'es.json'
+      },
+      {
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+        file: 'en.json'
+      }
+    ]
   },
   runtimeConfig: {
     public: {
