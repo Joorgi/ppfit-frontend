@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/i18n'
   ],
+  css: ['~/assets/css/main.css'],
   pinia: {
     /**
      * Automatically add stores dirs to the auto imports. This is the same as
@@ -32,5 +33,10 @@ export default defineNuxtConfig({
       {code: 'fr', language: 'fr-FR'}
     ],
     defaultLocale: 'en',
+  },
+  runtimeConfig: {
+    public: {
+      apiBase: 'http://localhost:8000/api'
+    }
   }
 })
