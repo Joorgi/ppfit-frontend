@@ -1,31 +1,29 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
-  devtools: {enabled: true},
   modules: [
     '@nuxt/ui',
     '@pinia/nuxt',
     '@nuxt/eslint',
     '@nuxt/icon',
     '@nuxt/image',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
   ],
+  devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
-  pinia: {
-    /**
-     * Automatically add stores dirs to the auto imports. This is the same as
-     * directly adding the dirs to the `imports.dirs` option. If you want to
-     * also import nested stores, you can use the glob pattern `./stores/**`
-     * (on Nuxt 3) or `app/stores/**` (on Nuxt 4+)
-     *
-     * @default `['stores']`
-     */
-    storesDirs: ['app/stores/**']
+  runtimeConfig: {
+    public: {
+      apiBase: 'http://localhost:8000/api',
+    },
   },
+  compatibilityDate: '2025-07-15',
   eslint: {
     config: {
-      stylistic: true
-    }
+      stylistic: {
+        quotes: 'single',
+        semi: false,
+        indent: 2,
+      },
+    },
   },
   i18n: {
     detectBrowserLanguage: false,
@@ -36,19 +34,25 @@ export default defineNuxtConfig({
         code: 'es',
         iso: 'es-ES',
         name: 'Español',
-        file: 'es.json'
+        file: 'es.json',
       },
       {
         code: 'en',
         iso: 'en-US',
         name: 'English',
-        file: 'en.json'
-      }
-    ]
+        file: 'en.json',
+      },
+    ],
   },
-  runtimeConfig: {
-    public: {
-      apiBase: 'http://localhost:8000/api'
-    }
-  }
+  pinia: {
+    /**
+     * Automatically add stores dirs to the auto imports. This is the same as
+     * directly adding the dirs to the `imports.dirs` option. If you want to
+     * also import nested stores, you can use the glob pattern `./stores/**`
+     * (on Nuxt 3) or `app/stores/**` (on Nuxt 4+)
+     *
+     * @default `['stores']`
+     */
+    storesDirs: ['app/stores/**'],
+  },
 })
