@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import type {NavigationMenuItem} from '@nuxt/ui'
+import {en, es} from '@nuxt/ui/locale'
 
 const route = useRoute()
+
+const {locale, setLocale} = useI18n()
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
@@ -43,25 +46,20 @@ const items = computed<NavigationMenuItem[]>(() => [
       </NuxtLink>
     </template>
 
-    <UNavigationMenu :items="items"/>
+<!--    <UNavigationMenu :items="items"/>-->
 
     <template #right>
       <UColorModeButton/>
 
-      <UTooltip text="Open on GitHub" :kbds="['meta', 'G']">
-        <UButton
-            color="neutral"
-            variant="ghost"
-            to="https://github.com/nuxt/ui"
-            target="_blank"
-            icon="i-simple-icons-github"
-            aria-label="GitHub"
-        />
-      </UTooltip>
+      <ULocaleSelect
+          v-model="locale"
+          :locales="[en, es]"
+          @update:modelValue="setLocale(locale)"
+      />
     </template>
 
-    <template #body>
-      <UNavigationMenu :items="items" orientation="vertical" class="-mx-2.5"/>
-    </template>
+<!--    <template #body>-->
+<!--      <UNavigationMenu :items="items" orientation="vertical" class="-mx-2.5"/>-->
+<!--    </template>-->
   </UHeader>
 </template>
