@@ -8,7 +8,6 @@ export interface User {
   date_joined: string
 }
 
-
 interface Profile {
   birth_date: string
   height_cm: number

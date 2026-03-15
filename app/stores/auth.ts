@@ -1,14 +1,12 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 
 // En Nuxt 3 usamos la sintaxis "Setup Store" (como si fuera un componente)
 export const useAuthStore = defineStore('auth', () => {
-
   // 1. STATE
   const token = useCookie<string | null>('auth_token', {
     maxAge: 60 * 60 * 24 * 7,
-    watch: true // Si cambia, actualiza el estado en toda la app automáticamente
+    watch: true, // Si cambia, actualiza el estado en toda la app automáticamente
   })
-
 
   const user = ref<any | null>(null)
 
@@ -16,7 +14,7 @@ export const useAuthStore = defineStore('auth', () => {
   const isAuthenticated = computed(() => !!token.value)
 
   // 3. ACTIONS
-  async function login(credentials: { email: string; password: string }) {
+  async function login(credentials: { email: string, password: string }) {
     const config = useRuntimeConfig()
 
     try {
@@ -30,7 +28,8 @@ export const useAuthStore = defineStore('auth', () => {
       token.value = response.access
 
       return true
-    } catch (error) {
+    }
+    catch (error) {
       console.error('Error en login:', error)
       throw error
     }
@@ -47,6 +46,6 @@ export const useAuthStore = defineStore('auth', () => {
     user,
     isAuthenticated,
     login,
-    logout
+    logout,
   }
 })

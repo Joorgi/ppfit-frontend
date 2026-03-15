@@ -1,8 +1,8 @@
-import type {UseFetchOptions} from '#app'
+import type { UseFetchOptions } from '#app'
 
 export function useApiFetch<T = any>(
   request: string | (() => string),
-  opts?: UseFetchOptions<T>
+  opts?: UseFetchOptions<T>,
 ) {
   const config = useRuntimeConfig()
   const token = useCookie<string | null>('auth_token')
