@@ -1,14 +1,15 @@
 import { defineStore } from 'pinia'
+import type { User } from '~~/types'
 
-// En Nuxt 3 usamos la sintaxis "Setup Store" (como si fuera un componente)
+// En Nuxt 4 usamos la sintaxis "Setup Store"
 export const useAuthStore = defineStore('auth', () => {
   // 1. STATE
   const token = useCookie<string | null>('auth_token', {
-    maxAge: 60 * 60 * 24 * 7,
-    watch: true, // Si cambia, actualiza el estado en toda la app automáticamente
+    maxAge: 60 * 60 * 24 * 7, // 7 días
+    watch: true,
   })
 
-  const user = ref<any | null>(null)
+  const user = ref<User | null>(null)
 
   // 2. GETTERS
   const isAuthenticated = computed(() => !!token.value)
@@ -22,9 +23,6 @@ export const useAuthStore = defineStore('auth', () => {
         method: 'POST',
         body: credentials,
       })
-
-      // Guardamos el token mágico. Al ser un useCookie, Nuxt lo guarda
-      // en el navegador automáticamente.
       token.value = response.access
 
       return true

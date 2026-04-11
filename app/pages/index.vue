@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-dark py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
+  <div class="py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-12 flex flex-col items-center">
         <NuxtImg
@@ -80,7 +80,7 @@
         </div>
 
         <div
-          class="md:col-span-1 md:row-span-1 bg-white dark:bg-gray-900/50 rounded-3xl p-6 flex flex-col items-center justify-center text-center border border-gray-200 dark:border-gray-800 shadow-sm"
+          class="md:col-span-1 md:row-span-1 bg-white dark:bg-gray-900/50 rounded-3xl p-6 flex flex-col items-center justify-center text-center border border-gray-200 dark:border-gray-800 shadow-sm hover:border-primary-500 transition-colors"
         >
           <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-3">
             <UIcon
