@@ -6,13 +6,6 @@
   <div class="py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-12 flex flex-col items-center">
-        <NuxtImg
-          src="/logo.png"
-          alt="ppfit logo"
-          width="80"
-          height="80"
-          class="mb-6 object-contain"
-        />
         <h1 class="text-5xl md:text-6xl font-black text-gray-900 dark:text-white tracking-tight mb-4">
           Entrena como un <span class="text-primary-500">Profesional</span>
         </h1>
