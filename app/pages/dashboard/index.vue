@@ -44,11 +44,11 @@
       </div>
 
       <div
-        v-if="results"
+        v-if="worwouts"
         class="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         <UCard
-          v-for="rutina in results.results"
+          v-for="rutina in worwouts.results"
           :key="rutina.id"
         >
           <template #header>
@@ -63,7 +63,7 @@
           <ul>
             <li
               v-for="ej in rutina.workout_exercises"
-              :key="ej.id"
+              :key="ej.exercise.id"
             >
               {{ ej.exercise.name }} - {{ ej.series }}x{{ ej.repetitions }} ({{ ej.weight_kg }}kg)
             </li>
@@ -78,13 +78,9 @@
 import { useAuthStore } from '~/stores/auth'
 import type { Pagination, Workout } from '~~/types'
 
-definePageMeta({
-  middleware: 'auth',
-})
-
 const authStore = useAuthStore()
 
-const { data: results, pending, error } = await useApiFetch<Pagination<Workout>>('/workouts/')
+const { data: worwouts, pending, error } = await useAPI<Pagination<Workout>>('/workouts/')
 
 const handleLogout = async () => {
   authStore.logout()

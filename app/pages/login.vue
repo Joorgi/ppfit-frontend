@@ -1,3 +1,39 @@
+<script setup lang="ts">
+import { ref, reactive } from 'vue'
+import { useAuthStore } from '~/stores/auth'
+
+const authStore = useAuthStore()
+
+const credentials = reactive({
+  email: 'ppfit@admin.com', // Borrar
+  password: 'ppfit', // Borrar
+})
+
+definePageMeta({
+  layout: 'blank',
+})
+
+const isLoading = ref(false)
+const errorMessage = ref('')
+
+const handleLogin = async () => {
+  isLoading.value = true
+  errorMessage.value = ''
+
+  try {
+    await authStore.login(credentials)
+
+    isLoading.value = false
+
+    await navigateTo('/dashboard')
+  }
+  catch (error: unknown) {
+    errorMessage.value = 'Usuario o contraseña incorrectos.'
+    console.error('Detalle del error:', error)
+  }
+}
+</script>
+
 <template>
   <div class="flex items-start justify-center pt-16">
     <UCard
@@ -79,46 +115,3 @@
     </UCard>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { useAuthStore } from '~/stores/auth'
-
-const authStore = useAuthStore()
-
-const credentials = reactive({
-  email: 'ppfit@admin.com', // Borrar
-  password: 'ppfit', // Borrar
-})
-
-definePageMeta({
-  layout: 'blank',
-})
-
-const isLoading = ref(false)
-const errorMessage = ref('')
-
-const handleLogin = async () => {
-  isLoading.value = true
-  errorMessage.value = ''
-
-  try {
-    // Llamamos a la acción de Pinia que definimos antes
-    await authStore.login(credentials)
-
-    // Si llegamos aquí, el login fue un éxito
-    alert('¡Login correcto! Revisa tus cookies en el navegador.')
-
-    // Más adelante descomentaremos esto para ir a la app:
-    await navigateTo('/dashboard')
-  }
-  catch (error: unknown) {
-    // Si falla (401 Unauthorized, etc), mostramos el error
-    errorMessage.value = 'Usuario o contraseña incorrectos.'
-    console.error('Detalle del error:', error)
-  }
-  finally {
-    isLoading.value = false
-  }
-}
-</script>
