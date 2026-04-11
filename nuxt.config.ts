@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     public: {
-      apiBase: process.env.BACKEND_URL,
+      apiBase: process.env.NUXT_PUBLIC_API_BASE,
     },
   },
   compatibilityDate: '2025-07-15',

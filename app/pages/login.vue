@@ -1,11 +1,16 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#1E1E1E] px-4">
-    <UCard class="w-full max-w-md">
+  <div class="flex items-start justify-center pt-16">
+    <UCard
+      class="w-full max-w-lg ring-0 bg-gray-50 dark:bg-dark"
+    >
       <template #header>
         <div class="text-center">
-          <Icon
-            name="mdi:weight-lifter"
-            class="text-4xl text-primary-500 mb-2"
+          <NuxtImg
+            src="/logo.png"
+            alt="Logo ppfit"
+            width="80"
+            height="80"
+            class="mx-auto"
           />
           <h2 class="text-2xl font-bold">
             {{ $t('auth.login_title') }}
@@ -20,23 +25,27 @@
         <UFormField
           :label="$t('auth.email')"
           name="email"
+          size="xl"
         >
           <UInput
             v-model="credentials.email"
             icon="i-heroicons-at-symbol"
             placeholder="Introduce tu email"
+            class="w-full"
           />
         </UFormField>
 
         <UFormField
           :label="$t('auth.password')"
           name="password"
+          size="xl"
         >
           <UInput
             v-model="credentials.password"
             type="password"
             icon="i-heroicons-lock-closed"
             placeholder="••••••••"
+            class="w-full"
           />
         </UFormField>
 
@@ -57,6 +66,16 @@
           Iniciar Sesión
         </UButton>
       </form>
+      <template #footer>
+        <div class="text-center text-gray-500">
+          ¿No tienes cuenta?
+          <NuxtLink
+            to="/register"
+            class="text-primary-500 hover:underline"
+          >Regístrate
+          </NuxtLink>
+        </div>
+      </template>
     </UCard>
   </div>
 </template>
@@ -70,6 +89,10 @@ const authStore = useAuthStore()
 const credentials = reactive({
   email: 'ppfit@admin.com', // Borrar
   password: 'ppfit', // Borrar
+})
+
+definePageMeta({
+  layout: 'blank',
 })
 
 const isLoading = ref(false)
@@ -89,7 +112,7 @@ const handleLogin = async () => {
     // Más adelante descomentaremos esto para ir a la app:
     await navigateTo('/dashboard')
   }
-  catch (error: any) {
+  catch (error: unknown) {
     // Si falla (401 Unauthorized, etc), mostramos el error
     errorMessage.value = 'Usuario o contraseña incorrectos.'
     console.error('Detalle del error:', error)
