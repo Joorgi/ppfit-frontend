@@ -5,8 +5,8 @@ import { useAuthStore } from '~/stores/auth'
 const authStore = useAuthStore()
 
 const credentials = reactive({
-  email: 'ppfit@admin.com', // Borrar
-  password: 'ppfit', // Borrar
+  email: 'user@example.com', // TODO: Borrar
+  password: 'string', // TODO: Borrar
 })
 
 definePageMeta({
@@ -22,8 +22,6 @@ const handleLogin = async () => {
 
   try {
     await authStore.login(credentials)
-
-    isLoading.value = false
 
     await navigateTo('/dashboard')
   }

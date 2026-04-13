@@ -21,6 +21,7 @@ const toast = useToast() // TODO: Pasar a un composable para reutilizarlo
 
 const onSubmit = async () => {
   isLoading.value = true
+
   try {
     await authStore.register(state)
     toast.add({
