@@ -13,6 +13,19 @@
     --color-ppfit-800: #d84315;
     --color-ppfit-900: #bf360c;
     --color-ppfit-950: #7a2208;
+
+    --color-dark-50: #e9e9e9;
+    --color-dark-100: #d2d2d2;
+    --color-dark-200: #bcbcbc;
+    --color-dark-300: #a5a5a5;
+    --color-dark-400: #8f8f8f;
+    --color-dark-500: #787878;
+    --color-dark-600: #626262;
+    --color-dark-700: #4b4b4b;
+    --color-dark-800: #353535;
+    --color-dark-900: #1e1e1e;
+    --color-dark-950: #1b1b1b;
+
     --color-dark: #1E1E1E;
 }
 
@@ -28,5 +41,18 @@
     --color-ppfit-800: #d84315;
     --color-ppfit-900: #bf360c;
     --color-ppfit-950: #7a2208;
+
+    --color-dark-50: #e9e9e9;
+    --color-dark-100: #d2d2d2;
+    --color-dark-200: #bcbcbc;
+    --color-dark-300: #a5a5a5;
+    --color-dark-400: #8f8f8f;
+    --color-dark-500: #787878;
+    --color-dark-600: #626262;
+    --color-dark-700: #4b4b4b;
+    --color-dark-800: #353535;
+    --color-dark-900: #1e1e1e;
+    --color-dark-950: #1b1b1b;
+
     --color-dark: #1E1E1E;
 }
