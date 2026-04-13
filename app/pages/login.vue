@@ -31,6 +31,9 @@ const handleLogin = async () => {
     errorMessage.value = 'Usuario o contraseña incorrectos.'
     console.error('Detalle del error:', error)
   }
+  finally {
+    isLoading.value = false
+  }
 }
 </script>
 
