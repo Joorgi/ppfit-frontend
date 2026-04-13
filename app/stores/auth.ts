@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { User } from '~~/types'
+import type { User, UserRegister } from '~~/types'
 
 // En Nuxt 4 usamos la sintaxis "Setup Store"
 export const useAuthStore = defineStore('auth', () => {
@@ -33,6 +33,23 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  async function register(credentials: UserRegister): Promise<boolean> {
+    const config = useRuntimeConfig()
+
+    try {
+      await $fetch(`${config.public.apiBase}/users/register/`, {
+        method: 'POST',
+        body: credentials,
+      })
+
+      return true
+    }
+    catch (error) {
+      console.error('Error en registro:', error)
+      throw error
+    }
+  }
+
   function logout() {
     token.value = null
     user.value = null
@@ -45,5 +62,6 @@ export const useAuthStore = defineStore('auth', () => {
     isAuthenticated,
     login,
     logout,
+    register,
   }
 })

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useAuthStore } from '~/stores/auth'
+
+const authStore = useAuthStore()
+
 const state = reactive({
   username: 'Fsb2quNr4vA3bx+ImA4',
   email: 'user@example.com',
@@ -13,13 +17,28 @@ const state = reactive({
   },
 })
 const isLoading = ref(false)
-const onSubmit = () => {
+const toast = useToast() // TODO: Pasar a un composable para reutilizarlo
+
+const onSubmit = async () => {
   isLoading.value = true
   try {
+    await authStore.register(state)
+    toast.add({
+      title: 'Éxito',
+      description: 'El formulario ha sido enviado.',
+      color: 'success',
+      icon: 'i-heroicons-check-circle',
+    })
     console.log('Registrando atleta:', state)
   }
   catch (e) {
     console.error('Error al registrar atleta:', e)
+    toast.add({
+      title: 'Error',
+      description: 'Ocurrió un error al registrar.',
+      color: 'error',
+      icon: 'i-heroicons-exclamation-circle',
+    })
   }
   finally {
     isLoading.value = false
@@ -75,19 +94,6 @@ definePageMeta({
             @submit="onSubmit"
           >
             <UFormField
-              label="Nombre de usuario"
-              name="username"
-            >
-              <UInput
-                v-model="state.username"
-                placeholder="Tu nombre"
-                size="lg"
-                color="primary"
-                class="text-white w-full"
-              />
-            </UFormField>
-
-            <UFormField
               label="Correo electrónico"
               name="email"
             >
@@ -101,14 +107,43 @@ definePageMeta({
               />
             </UFormField>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <UFormField
+                label="Contraseña"
+                name="password"
+              >
+                <UInput
+                  v-model="state.password"
+                  type="password"
+                  placeholder="••••••••"
+                  size="lg"
+                  color="primary"
+                  class="text-white w-full"
+                />
+              </UFormField>
+
+              <UFormField
+                label="Confirmar contraseña"
+                name="password_confirm"
+              >
+                <UInput
+                  v-model="state.password_confirm"
+                  type="password"
+                  placeholder="••••••••"
+                  size="lg"
+                  color="primary"
+                  class="text-white w-full"
+                />
+              </UFormField>
+            </div>
+
             <UFormField
-              label="Contraseña"
-              name="password"
+              label="Nombre de usuario"
+              name="username"
             >
               <UInput
-                v-model="state.password"
-                type="password"
-                placeholder="••••••••"
+                v-model="state.username"
+                placeholder="Tu nombre"
                 size="lg"
                 color="primary"
                 class="text-white w-full"
@@ -122,6 +157,7 @@ definePageMeta({
               size="xl"
               color="primary"
               class="font-bold mt-8"
+              :loading="isLoading"
             />
           </UForm>
 

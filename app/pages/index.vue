@@ -6,7 +6,7 @@
   <div class="py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
       <div class="text-center mb-12 flex flex-col items-center">
-        <h1 class="text-5xl md:text-6xl font-black text-gray-900 dark:text-white tracking-tight mb-4">
+        <h1 class="text-5xl md:text-6xl font-black text-dark-900 dark:text-white tracking-tight mb-4">
           Entrena como un <span class="text-primary-500">Profesional</span>
         </h1>
         <p class="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
@@ -16,7 +16,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-4 auto-rows-[250px] gap-4 mb-24">
         <div
-          class="md:col-span-2 md:row-span-2 bg-gray-900 dark:bg-black rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden shadow-xl border border-gray-800"
+          class="md:col-span-2 md:row-span-2 bg-dark-900 dark:bg-black rounded-3xl p-8 flex flex-col justify-center relative overflow-hidden shadow-xl border border-gray-800"
         >
           <div
             class="absolute -top-20 -right-20 w-64 h-64 bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
@@ -28,10 +28,19 @@
             Deja el cuaderno de papel en casa. Lleva el control exacto de tus series, repeticiones y pesos de forma
             digital.
           </p>
-          <div class="z-10">
+          <div class="z-10 flex flex-col sm:flex-row sm:justify-between gap-4">
+            <UButton
+              to="/register"
+              color="primary"
+              size="xl"
+              icon="i-heroicons-user-plus"
+              class="font-bold"
+            >
+              Regístrate
+            </UButton>
             <UButton
               to="/login"
-              color="primary"
+              color="neutral"
               size="xl"
               icon="i-heroicons-bolt"
               class="font-bold"
