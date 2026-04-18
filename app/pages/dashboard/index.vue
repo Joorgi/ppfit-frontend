@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <div class="flex justify-between items-center mb-8">
+    <div class="flex items-center mb-8">
       <div>
         <h1 class="text-3xl font-bold tracking-tight">
           {{ $t('dashboard.title') }}
@@ -9,15 +9,6 @@
           {{ $t('dashboard.welcome') }}
         </p>
       </div>
-
-      <UButton
-        color="error"
-        variant="soft"
-        icon="i-heroicons-arrow-right-on-rectangle"
-        @click="handleLogout"
-      >
-        {{ $t('dashboard.logout') }}
-      </UButton>
     </div>
 
     <UCard>
@@ -82,26 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '~/stores/auth'
 import type { Pagination, Workout } from '~~/types'
 
-const authStore = useAuthStore()
-
 const { data: worwouts, pending, error } = await useAPI<Pagination<Workout>>('/workouts/')
-
-const handleLogout = async () => {
-  authStore.logout()
-  await navigateTo('/login')
-}
-
-const getWorkouts = async () => {
-  try {
-    const response = await useAPI<Pagination<Workout>>('/workouts/')
-    return response.data
-  }
-  catch (error) {
-    console.error('Error fetching workouts:', error)
-    throw error
-  }
-}
 </script>
