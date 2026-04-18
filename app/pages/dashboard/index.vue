@@ -33,7 +33,7 @@
       </div>
 
       <div
-        v-else-if="error"
+        v-else-if="error || !worwouts"
         class="text-center py-10 text-red-500"
       >
         <UIcon
@@ -44,7 +44,14 @@
       </div>
 
       <div
-        v-if="worwouts"
+        v-else-if="worwouts && worwouts.results.length === 0"
+        class="text-center py-10 text-gray-500"
+      >
+        <p>No tienes entrenamientos registrados.</p>
+      </div>
+
+      <div
+        v-if="worwouts && worwouts.results.length > 0"
         class="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         <UCard
@@ -85,5 +92,16 @@ const { data: worwouts, pending, error } = await useAPI<Pagination<Workout>>('/w
 const handleLogout = async () => {
   authStore.logout()
   await navigateTo('/login')
+}
+
+const getWorkouts = async () => {
+  try {
+    const response = await useAPI<Pagination<Workout>>('/workouts/')
+    return response.data
+  }
+  catch (error) {
+    console.error('Error fetching workouts:', error)
+    throw error
+  }
 }
 </script>
