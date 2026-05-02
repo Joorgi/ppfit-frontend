@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { User, UserRegister } from '~~/types'
+import type { User, UserRegister, LoginResponse } from '~~/types'
 
 // En Nuxt 4 usamos la sintaxis "Setup Store"
 export const useAuthStore = defineStore('auth', () => {
@@ -16,36 +16,47 @@ export const useAuthStore = defineStore('auth', () => {
 
   // 3. ACTIONS
   async function login(credentials: { email: string, password: string }) {
-    const config = useRuntimeConfig()
-
     try {
-      const response: any = await $fetch(`${config.public.apiBase}/users/login/`, {
+      const { data } = await useAPI<LoginResponse>('/users/login/', {
         method: 'POST',
         body: credentials,
       })
-      token.value = response.access
 
-      return true
+      if (data.value) {
+        token.value = data.value.access
+        await me()
+      }
     }
-    catch (error) {
+    catch (error: unknown) {
       console.error('Error en login:', error)
       throw error
     }
   }
 
   async function register(credentials: UserRegister): Promise<boolean> {
-    const config = useRuntimeConfig()
-
     try {
-      await $fetch(`${config.public.apiBase}/users/register/`, {
+      await useAPI('/users/register/', {
         method: 'POST',
         body: credentials,
       })
 
       return true
     }
-    catch (error) {
+    catch (error: unknown) {
       console.error('Error en registro:', error)
+      throw error
+    }
+  }
+
+  async function me() {
+    try {
+      const { data } = await useAPI<User>('/users/me/')
+      if (data.value) {
+        user.value = data.value
+      }
+    }
+    catch (error: unknown) {
+      user.value = null
       throw error
     }
   }

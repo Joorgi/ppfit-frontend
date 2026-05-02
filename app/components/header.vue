@@ -11,13 +11,8 @@ const handleLogout = async () => {
   await navigateTo('/login')
 }
 
-const user = ref({
-  name: 'Jhon Doe',
-  avatar: {
-    src: '/avatar.jpg',
-    alt: 'Jhon Doe',
-  },
-})
+const user = computed(() => authStore.user)
+const router = useRouter()
 
 const userItems = computed<DropdownMenuItem[][]>(() => [
   [
@@ -95,23 +90,28 @@ const userItems = computed<DropdownMenuItem[][]>(() => [
       </NuxtLink>
     </template>
 
-    <!--    <UNavigationMenu :items="items"/> -->
-
     <template #right>
-      <UColorModeButton v-if="!authStore.isAuthenticated" />
+      <div
+        v-if="!authStore.isAuthenticated && router.currentRoute.value.name !== 'login'"
+        class="flex items-center gap-4"
+      >
+        <UColorModeButton />
 
-      <ULocaleSelect
-        v-model="locale"
-        :locales="[en, es]"
-        @update:model-value="setLocale(locale)"
-      />
+        <ULocaleSelect
+          v-model="locale"
+          :locales="[en, es]"
+          @update:model-value="setLocale(locale)"
+        />
+      </div>
 
       <UDropdownMenu
+        v-if="authStore.isAuthenticated"
         :items="userItems"
       >
         <UButton
+          v-if="authStore.isAuthenticated"
           v-bind="user"
-          :label="user?.name"
+          :label="user?.username"
           trailing-icon="i-lucide-chevron-down"
           color="neutral"
           variant="ghost"
