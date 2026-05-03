@@ -1,8 +1,19 @@
 import { useAuthStore } from '~/stores/auth'
 
-export default defineNuxtRouteMiddleware((to, _) => {
+export default defineNuxtRouteMiddleware(async (to, _) => {
   const authStore = useAuthStore()
+  const token = useCookie<string | null>('auth_token')
   const router = useRouter()
+
+  if (token.value && !authStore.user) {
+    try {
+      await authStore.me()
+    }
+    catch (e) {
+      token.value = null
+      return
+    }
+  }
 
   const publicRoutes = ['/', '/login', '/register']
 

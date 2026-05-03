@@ -17,7 +17,7 @@ export const useAPI = createUseFetch({
   },
   onResponse(context) {
     if (context.response.status === 200) {
-      console.log('Respuesta exitosa')
+      // TODO: controlar loader
     }
   },
 })

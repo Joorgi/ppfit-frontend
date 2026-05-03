@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import type { User, UserRegister, LoginResponse } from '~~/types'
 
-// En Nuxt 4 usamos la sintaxis "Setup Store"
 export const useAuthStore = defineStore('auth', () => {
   // 1. STATE
   const token = useCookie<string | null>('auth_token', {
@@ -24,7 +23,6 @@ export const useAuthStore = defineStore('auth', () => {
 
       if (data.value) {
         token.value = data.value.access
-        await me()
       }
     }
     catch (error: unknown) {
@@ -74,5 +72,6 @@ export const useAuthStore = defineStore('auth', () => {
     login,
     logout,
     register,
+    me,
   }
 })
